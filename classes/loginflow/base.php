@@ -97,6 +97,36 @@ class base {
             return false;
         }
 
+
+        //Pilot
+        //Scope - 2,000
+        //1-2 months
+        //Option 1 - manual mapping (Join Users in Moodle DB, update idnumber in the DB)
+        // User Churn 1%
+
+        //MVP - Technical Option 1
+        //Scope - 200,000
+        //3-6 months
+        //Option 1
+        // Must - Mobility of Government
+        // Moodle
+        ////Manual mapping (Join Users in Moodle DB, update idnumber in the DB)
+        // Teams + Office 365 SPO Storage
+        ////New Invite for SPO Site
+        ////Add User to O365 Group
+        // User Churn 1%
+        // Scenarios / Use Cases
+
+        //MVP - Technical Option 2
+        //Option 1 - internalise mapping (lookup LearnerUPNs on Moodle User object for mapping)
+        //Option 2 - externalise mapping
+        ////First login, populate User CRM record with Moodle idnumber and UPN (do we have the idnumber at this stage?)
+        ////Subsequent login, lookup Moodle idnumber from CRM from inbound UPN
+
+        //MVP - Technical Option 3
+        //Option 3 - externalise mapping (Azure AD B2C lookup during journey)
+        //B2B Invite / API - create on the fly (risky - race condition around replication) - create ahead of time
+        
         $idtoken = \auth_oidc\jwt::instance_from_encoded($tokenrec->idtoken);
 
         // O365 provides custom field mapping, skip OIDC mapping if O365 is present.
@@ -127,7 +157,7 @@ class base {
                 \auth_oidc\utils::debug('Setting lastname.', 'base::getuserinfo', $lastname);
             }
             else {
-                $lastname = "name";
+                $lastname = "<<Default Last Name>>";
             }
         }
         else {
